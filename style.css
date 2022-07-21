@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    /* background-color: #616161; */
+    /* background-color: #362c3f; */
+    background-color: #4f4547;
+    position: relative;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board {
+    width: 700px;
+    height: 700px;
+    border-radius: 10px;
+    padding: 16px;
+    background-color: #1e1e1e;
+    color: #e1e1e1;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box {
+    display: inline-block;
+    position: relative;
+    width: calc(100%/3 - 32px);
+    margin: 16px;
+    border-radius: 10px;
+    font-size: 8em;
+    line-height: 0;
+    background-color: #fff1;
+    cursor: pointer;
+}
+
+.box i {
+    visibility: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.box i::before {
+    text-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 200ms;
+}
+
+.box:hover i::before {
+    text-shadow: 0 16px 13px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+}
+
+.box i[show] {
+    visibility: visible;
+    animation: sign-show 400ms ease forwards;
+}
+
+@keyframes sign-show {
+    0% {
+        font-size: 0;
+    } 50% {
+        font-size: 10rem;
+    } 100% {
+        font-size: 8rem;
+    }
+}
+
+.gameover-overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    font-size: 3em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    animation: gameover-show 1s ease-in-out forwards;
+    color: #e1e1e1;
+}
+
+.gameover-overlay * {
+    display: inline-block;
+    width: fit-content;
+    position: absolute;
+    top: 50%;
+    animation: gameover-text-anim 1s ease-out forwards;
+    filter: drop-shadow(0 10px 10px rgba(0, 0, 0));
+}
+.gameover-overlay button {
+    cursor: pointer;
+    background-color: #9e15c4;
+    color: inherit;
+    font: inherit;
+    padding: 8px 16px;
+    margin-top: 90px;
+    border: none;
+    border-radius: 10px;
+    transition: filter ,letter-spacing 200ms;
+} .gameover-overlay button:hover {
+    filter: drop-shadow(0 16px 10px rgba(0, 0, 0));
+    letter-spacing: 10px;
+}
+
+@keyframes gameover-text-anim {
+    from {
+        opacity: 0;
+        transform: translate(-50%, calc(-50% - 100px));
+    } to {
+        opacity: 100%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+
+@keyframes gameover-show {
+    from {
+        background-color: #0000;
+    } to {
+        background-color: #000000cc;
+    }
+}
