@@ -115,14 +115,14 @@ function checkGameover() {
     let winner = checkWinner(boardState);
     let openSpots = findSpots(boardState);
     if (!openSpots.length || winner) {
-        let txt = "Gameover, ";
+        let txt = "";
         if (!winner) {
             txt += "TIE"
         } else {
-            txt += (winner === HumanPlayer)? "Human" : "Computer"
-        } // Note: It Is Not Possible That Human Wins
+            txt += ((winner === HumanPlayer)? "Human" : "Computer").concat(" Won");
+        } // Note: Computer Should Never Lose
         WinnerAnnounce.innerText = txt;
-        WinnerAnnounce.parentElement.style.display = "block";
+        WinnerAnnounce.parentElement.parentElement.style.display = "block";
         return true;
     }
     return false
@@ -138,7 +138,7 @@ function reset() {
         boardState[i] = E;
     }
     WinnerAnnounce.innerText = "";
-    WinnerAnnounce.parentElement.style.display = "";
+    WinnerAnnounce.parentElement.parentElement.style.display = "";
 }
 
 

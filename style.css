@@ -16,8 +16,8 @@ body {
 }
 
 .board {
-    width: 700px;
-    height: 700px;
+    min-width: 700px;
+    min-height: 700px;
     border-radius: 10px;
     padding: 16px;
     background-color: #1e1e1e;
@@ -81,31 +81,41 @@ body {
     font-size: 3em;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
+    letter-spacing: 10px;
     animation: gameover-show 1s ease-in-out forwards;
     color: #e1e1e1;
 }
 
-.gameover-overlay * {
+.gameover-overlay .gameover-title {
     display: inline-block;
     width: fit-content;
     position: absolute;
     top: 50%;
     animation: gameover-text-anim 1s ease-out forwards;
+}
+
+.gameover-title * {
     filter: drop-shadow(0 10px 10px rgba(0, 0, 0));
 }
-.gameover-overlay button {
+
+.gameover-title button {
     cursor: pointer;
-    background-color: #9e15c4;
     color: inherit;
     font: inherit;
     padding: 8px 16px;
-    margin-top: 90px;
+    margin-top: 32px;
     border: none;
     border-radius: 10px;
-    transition: filter ,letter-spacing 200ms;
-} .gameover-overlay button:hover {
-    filter: drop-shadow(0 16px 10px rgba(0, 0, 0));
+    transition: letter-spacing 200ms;
+    letter-spacing: normal;
+    background: linear-gradient(0, #0000, #191919);
+} .gameover-title button:hover {
     letter-spacing: 10px;
+    animation: button-hover 200ms ease forwards;
+}
+
+.gameover-title span {
+    display: block;
 }
 
 @keyframes gameover-text-anim {
